@@ -2,7 +2,7 @@
 "admin_tg_id": ,
 "one_month_cost": 269,
 "trial_period": 3,
-"count_free_from_referrer": 1,
+"count_free_from_referrer": 0.24,
 "UTC_time": 3,
 "tg_token": "",
 "tg_shop_token": ""
