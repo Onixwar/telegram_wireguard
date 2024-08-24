@@ -13,7 +13,7 @@ def create(payment_plan, chat_id, user_id):
             },
             "confirmation": {
                 "type": "redirect",
-                "return_url": "https://t.me/FreeVpnDownloadBot"
+                "return_url": "https://t.me/VPN_for_test_bot"
             },
             "capture": True,
             "description": "Оплата VPN на 1 мес.",
