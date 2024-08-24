@@ -78,13 +78,13 @@ async def start(message: types.Message):
                 # Пользователь пришел по реферальной ссылке, обрабатываем это
                 referrerUser = await User.GetInfo(referrer_id)
                 await bot.send_message(referrer_id,
-                                       f"Вам начислен +{CONFIG['count_free_from_referrer']} месяц за нового пользователя",
+                                       f"Вам начислена +{CONFIG['count_free_from_referrer']} неделя за нового пользователя",
                                        reply_markup=await main_buttons(referrerUser))
 
                 # Если время подписки истекло, а только после было добавлено рефереру, нужно создавать wg0 конфиг
                 if not os.path.exists(f'/root/wg0-client-{str(referrer_id)}.conf'):
                     subprocess.call(f'./addusertovpn.sh {str(referrer_id)}', shell=True)
-                    # Информируем что конфиг подключения обновлен
+                    # Информируем, что конфиг подключения обновлен
                     await bot.send_message(referrer_id, e.emojize(texts_for_bot["alert_to_update_wg_config"]))
 
 
@@ -476,7 +476,7 @@ async def Work_with_Message(m: types.Message):
                                            callback_data="BuyMonth:12"))
             Butt_payment.add(
                 types.InlineKeyboardButton(
-                    e.emojize(f"Бесплатно +{CONFIG['count_free_from_referrer']} месяц за нового друга"),
+                    e.emojize(f"Бесплатно +{CONFIG['count_free_from_referrer']} неделя за нового друга"),
                     callback_data="Referrer"))
 
             # await bot.send_message(m.chat.id, "<b>Оплатить можно с помощью Банковской карты или Qiwi кошелька!</b>\n\nВыберите на сколько месяцев хотите приобрести подписку:", reply_markup=Butt_payment,parse_mode="HTML")
@@ -499,9 +499,9 @@ async def Work_with_Message(m: types.Message):
 
     if e.demojize(m.text) == "Рефералы :busts_in_silhouette:":
         countReferal = await user_dat.countReferrerByUser()
-        refLink = "https://t.me/FreeVpnDownloadBot?start=" + str(user_dat.tgid)
+        refLink = "https://t.me/VPN_for_test_bot?start=" + str(user_dat.tgid)
 
-        msg = f"<b>Приглашайте друзей и получайте +1 месяц бесплатно за каждого нового друга</b>\n\r\n\r" \
+        msg = f"<b>Приглашайте друзей и получайте +1 неделю бесплатно за каждого нового друга</b>\n\r\n\r" \
               f"Количество рефералов: {str(countReferal)} " \
               f"\n\rВаша реферальная ссылка: \n\r<code>{refLink}</code>"
 
@@ -512,9 +512,9 @@ async def Work_with_Message(m: types.Message):
 async def Referrer(call: types.CallbackQuery):
     user_dat = await User.GetInfo(call.from_user.id)
     countReferal = await user_dat.countReferrerByUser()
-    refLink = "https://t.me/FreeVpnDownloadBot?start=" + str(user_dat.tgid)
+    refLink = "https://t.me/VPN_for_test_bot?start=" + str(user_dat.tgid)
 
-    msg = f"Приглашайте друзей и получайте +1 месяц безлимитного тарифа за каждого нового друга\n\r\n\r" \
+    msg = f"Приглашайте друзей и получайте +1 неделю безлимитного тарифа за каждого нового друга\n\r\n\r" \
           f"Количество рефералов: {str(countReferal)} " \
           f"\n\rВаша реферальная ссылка: \n\r<code>{refLink}</code>"
 
@@ -564,7 +564,7 @@ async def check_handler(call: types.CallbackQuery) -> None:
             ## Фиксируем платеж и пополяем подписку
             await got_payment(call, payment_metadata)
     else:
-        await bot.send_message(call.from_user.id, f"Повторите действие через 3 минуты. Оплата пока не прошла или возникла ошибка, поддержка @befutureSupport")
+        await bot.send_message(call.from_user.id, f"Повторите действие через 3 минуты. Оплата пока не прошла или возникла ошибка, поддержка https://t.me/StudyVpnRu")
 
 # @bot.callback_query_handler(func=lambda c: 'Cancel:' in c.data)
 # async def Cancel_payment(call: types.CallbackQuery):
@@ -805,12 +805,12 @@ def checkTime():
                     Butt_reffer = types.InlineKeyboardMarkup()
                     Butt_reffer.add(
                         types.InlineKeyboardButton(
-                            e.emojize(f"Бесплатно +{CONFIG['count_free_from_referrer']} месяц за нового друга"),
+                            e.emojize(f"Бесплатно +{CONFIG['count_free_from_referrer']} неделя за нового друга"),
                             callback_data="Referrer"))
                     BotChecking.send_message(i['tgid'], texts_for_bot["alert_to_renew_sub"], reply_markup=Butt_reffer,
                                              parse_mode="HTML")
 
-                # Дарим бесплатную подписку на 7 дней если он висит 7 дня как неактивный и не ливнул
+                # Дарим бесплатную подписку на 3 дня если он висит 7 дня как неактивный и не ливнул
                 # Не удалил и не заблокировал бот в течение 3х дней
                 approveLTV = 60 * 60 * 24 * int(CONFIG['trial_period'])
                 # От текущего времени вычитаем дату старта
