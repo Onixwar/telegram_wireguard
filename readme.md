@@ -2,7 +2,9 @@
 <h2>Quick installation:</h2>
 
 ```bash
-sudo wget https://github.com/Onixwar/telegram-wireguard-vpn-bot/releases/download/release/Wireguard-installer-with-Adminpanel.sh && chmod 774 Wireguard-installer-with-Adminpanel.sh && ./Wireguard-installer-with-Adminpanel.sh
+cd /opt/
+git clone https://github.com/Onixwar/telegram_wireguard.git
+bash /opt/telegram_wireguard/Wireguard-installer-with-Adminpanel.sh
 ```
 - after configuring the wg, a choice will appear: `Hotite li ustanovit' srazu Telegram bota(1 - Da, 0 - Net):` We agree (press 1)
 - Then we specify the `Telegram API` of the bot, which we received from **BotFather** when creating the bot, `YCassa API`, which we also received from **BotFather** when setting up the Payment of the bot and `Telegram-id Admin` - your telegram account ID
