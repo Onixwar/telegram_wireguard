@@ -136,11 +136,11 @@ function installWireGuard() {
 		if [[ ${BOT_AUTO_INSTALL} == '1' ]]; then
 			apt-get install unzip
 			apt-get install python3-pip -y
-			wget https://github.com/Onixwar/telegram_wireguard/archive/refs/heads/master.zip
-			unzip master.zip
-			rm master.zip
-#      apt-get install git
-#      git clone https://github.com/Onixwar/telegram_wireguard 
+#			wget https://github.com/Onixwar/telegram_wireguard/archive/refs/heads/master.zip
+#			unzip master.zip
+#			rm master.zip
+      apt-get install git
+      git clone https://github.com/Onixwar/telegram_wireguard.git 
 			pip install -r "$(pwd)/telegram_wireguard/requirements.txt"
 			echo "{
 \"admin_tg_id\": ${ADMIN_ID_BOT},
