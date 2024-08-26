@@ -1,5 +1,5 @@
-import yookassa
-from yookassa import Payment
+import uuid
+from yookassa import Configuration, Payment
 
 yookassa.Configuration.account_id = 283923
 yookassa.Configuration.secret_key = 'live_rqhdy1qpZpMoQqQeTEzkaMkrmcNY17ZPeFwlWf573ro'
