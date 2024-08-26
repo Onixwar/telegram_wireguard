@@ -1,3 +1,4 @@
+import yookassa
 import uuid
 from yookassa import Configuration, Payment
 
