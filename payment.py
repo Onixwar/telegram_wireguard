@@ -2,8 +2,8 @@ import yookassa
 import uuid
 from yookassa import Configuration, Payment
 
-yookassa.Configuration.account_id = 283923
-yookassa.Configuration.secret_key = 'live_rqhdy1qpZpMoQqQeTEzkaMkrmcNY17ZPeFwlWf573ro'
+Configuration.account_id = 283923
+Configuration.secret_key = 'live_rqhdy1qpZpMoQqQeTEzkaMkrmcNY17ZPeFwlWf573ro'
 
 def create(payment_plan, chat_id, user_id):
     payment = Payment.create(
